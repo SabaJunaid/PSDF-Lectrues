@@ -1,0 +1,269 @@
+## Polymorphism 02-03-2026
+class Area:
+    def __init__(self,a,b):
+        self.a=a
+        self.b=b
+    def area(self):
+        return self.a*self.b
+class Triangle(Area):
+    def __init__(self,a,b,l,h):
+        super().__init__(a,b)
+        self.l=l
+        self.h=h
+    def area(self):
+        r=self.l*self.h
+        return r
+t=Triangle(12,3,45,12)
+t.area()
+class Area:
+    def __init__(self,a,b):
+        self.a=a
+        self.b=b
+    def area(self):
+        return self.a*self.b
+class Triangle(Area):
+
+    def __init__(self,a,b):
+        super().__init__(a,b)
+    def area(self):
+        x=super().area()
+        x=x/2
+        return x
+t=Triangle(78,45)
+print(t.area())
+## class practice polymorphism
+# Animal Sounds (Method Overriding)
+
+class Animal:
+    def sound(self):
+        print("Animal makes a sound")
+
+class Dog(Animal):
+    def sound(self):
+        super().sound()
+        print("Dog says: Woof Woof")
+
+class Cat(Animal):
+    def sound(self):
+        super().sound()
+        print("Cat says: Meow")
+class Cow(Animal):
+    def sound(self):
+        super().sound()
+        print("Cow says: Moo")
+# Creating objects
+d = Dog()
+c = Cat()
+w = Cow()
+
+d.sound()
+c.sound()
+w.sound()
+# Vehicle Movement
+class Vehicle:
+    def move(self):
+        print("vehicle is moving")
+class Car(Vehicle):
+    def move(self):
+        print("car is moving on the road")
+class Bike(Vehicle):
+    def move(self):
+        print("Bike is moving on the road")
+class Bus(Vehicle):
+    def move(self):
+        print("Bus is transporting passengers")
+# creating objects
+v1 = Car()
+v2 = Bike()
+v3 = Bus()
+# store objects in list
+vehicles = [v1, v2, v3]
+# loop
+for vehicle in vehicles:
+    vehicle.move()
+
+
+#  Shape Area Calculation
+class Shape:
+    def area(self):
+        print("area not defined")
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+    def area(self):
+        return self.length*self.width
+class Circle(Shape):
+    def __init__(self, radius):
+        self.raduis=radius
+    def area(self):
+        return 3.14*self.raduis**2
+
+class Triangle(Shape):
+    def __init__(self, base, height):
+        self.base=base
+        self.height=height
+    def area(self):
+        return 0.5*self.base*self.height
+# creating objetcs:
+r = Rectangle(10, 5)
+c = Circle(7)
+t = Triangle(8, 6)
+
+print("Rectangle Area:", r.area())
+print("Circle Area:", c.area())
+print("Triangle Area:", t.area())
+# Employee Role Description
+class Employee:
+    def get_role(self):
+        return "Employee works in the company"
+class Manager(Employee):
+    def get_role(self):
+        return "Manage the Office"
+class Developer(Employee):
+    def get_role(self):
+        return "Develops code"
+class Designer(Employee):
+    def get_role(self):
+        return "Designs wedding cards"
+# object creation
+m = Manager()
+d = Developer()
+de = Designer()
+print(m.get_role())
+print(d.get_role())
+print(de.get_role())
+## Payment Processing System
+# Base class
+class Payment:
+    def pay(self, amount):
+        print("Processing payment of", amount)
+
+
+# Subclass 1
+class CreditCardPayment(Payment):
+    def pay(self, amount):
+        print(f"Paid {amount} using Credit Card.")
+
+
+# Subclass 2
+class JazzCashPayment(Payment):
+    def pay(self, amount):
+        print(f"Paid {amount} using JazzCash.")
+
+
+# Subclass 3
+class BankTransferPayment(Payment):
+    def pay(self, amount):
+        print(f"Paid {amount} using Bank Transfer.")
+
+
+# Testing
+p1 = CreditCardPayment()
+p2 = JazzCashPayment()
+p3 = BankTransferPayment()
+
+p1.pay(5000)
+p2.pay(3000)
+p3.pay(10000)
+## Salary Calculation System
+# Base class
+class Employee:
+    def calculate_salary(self):
+        pass
+
+
+# Subclass 1
+class FullTimeEmployee(Employee):
+    def __init__(self, salary):
+        self.salary = salary
+
+    def calculate_salary(self):
+        return self.salary
+
+# Subclass 2
+class PartTimeEmployee(Employee):
+    def __init__(self, hourly_rate, hours):
+        self.hourly_rate = hourly_rate
+        self.hours = hours
+
+    def calculate_salary(self):
+        return self.hourly_rate * self.hours
+
+# Subclass 3
+class Intern(Employee):
+    def __init__(self, stipend):
+        self.stipend = stipend
+
+    def calculate_salary(self):
+        return self.stipend
+
+# Polymorphism (same method call, different behavior)
+employees = [
+    FullTimeEmployee(50000),
+    PartTimeEmployee(500, 20),
+    Intern(15000)
+]
+
+for emp in employees:
+    print("Salary:", emp.calculate_salary())
+# Discount System (Calculation Based)
+class Customer:
+    def get_discount(self, amount):
+        self.amount=amount
+        return amount
+class Regularcustomer(Customer):
+    def get_discount(self, amount):
+        return amount -(amount*0.05)
+class Permiumcustomer(Customer):
+    def get_discount(self, amount):
+        return amount - (amount*0.10)
+class VIPcustomer(Customer):
+    def get_discount(self, amount):
+        return amount - (amount*0.20)
+# creating object:
+amount=10000
+r =Regularcustomer()
+p = Permiumcustomer()
+v = VIPcustomer()
+print(r.get_discount(amount))
+print(p.get_discount(amount))
+print(v.get_discount(amount))
+## Banking Withdrawal System
+# Base class
+class Account:
+    def withdraw(self, amount):
+        pass
+
+
+# Subclass 1
+class SavingsAccount(Account):
+    def withdraw(self, amount):
+        fee = amount * 0.02
+        total = amount + fee
+        print(f"Savings Account: Withdraw {amount} with 2% fee = {total}")
+
+
+# Subclass 2
+class CurrentAccount(Account):
+    def withdraw(self, amount):
+        print(f"Current Account: Withdraw {amount} with no fee = {amount}")
+
+
+# Subclass 3
+class BusinessAccount(Account):
+    def withdraw(self, amount):
+        fee = amount * 0.05
+        total = amount + fee
+        print(f"Business Account: Withdraw {amount} with 5% fee = {total}")
+
+
+# Creating objects
+acc1 = SavingsAccount()
+acc2 = CurrentAccount()
+acc3 = BusinessAccount()
+
+# Calling method (polymorphism, no loop)
+acc1.withdraw(10000)
+acc2.withdraw(10000)
+acc3.withdraw(10000)
